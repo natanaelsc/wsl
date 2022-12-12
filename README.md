@@ -104,7 +104,7 @@ Defina a configuração que engloba todas as suas distribuições Linux instalad
     wsl --shutdown
     ```
 
-Essa é **[minha configuração](/config-files/.wslconfig)**, você pode encontrar mais exemplos no arquivo [.wslconfig.exemple](/config-files/.wslconfig.exemple)
+Essa é [minha configuração](/config-files/.wslconfig), você pode encontrar mais exemplos no arquivo [.wslconfig.exemple](/config-files/.wslconfig.exemple)
 
 ### Configuração Local
 
@@ -133,7 +133,7 @@ Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na dis
     wsl --shutdown
     ```
 
-Essa é **[minha configuração](/config-files/wsl.conf)**, você pode encontrar mais exemplos no arquivo [wsl.conf.exemple](/config-files/wsl.conf.exemple)
+Essa é [minha configuração](/config-files/wsl.conf), você pode encontrar mais exemplos no arquivo [wsl.conf.exemple](/config-files/wsl.conf.exemple)
 
 ## Referência
 
