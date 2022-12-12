@@ -6,27 +6,35 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
 ## Visão Geral
 
+- [Requisitos](#requisitos)
+
 - [Instalação](#instalação)
 
 - [Desisntalação](#desinstalação)
 
-## Instalação
-
-**Requisitos**
+## Requisitos
 
 - Windows 10 versão 2004 e superior (Build 19041 e superior) ou o Windows 11.
 
 - Recomendo no mínimo 8GB de RAM.
 
+## Instalação
+
 1. Abra o PowerShell ou CMD como administrador e insira o comando abaixo:
 
-    ```cmd
+    ```powershell
     wsl --install
     ```
 
 2. Reinicie seu PC.
 
 Isso mesmo que você pensou, meu chapa. Com apenas esse comando tu faz o mundo girar.
+
+A distro instalada por padrão é a Ubuntu, você pode instalar outras e quantas quiser, o limite é sua máquina.
+
+    ```
+    wsl --install <Distro>
+    ```
 
 ## Desinstalação
 
@@ -36,6 +44,12 @@ Se você não gostou da distro instalada ou simplemente quer se livrar dessa bag
 
 2. Na mesma aba de aplicativos, procure por *Windows Subsystem for Linux update* e coisas parecidas com *subs* e *linux*, desinstale todas, cuidado pra não desinstalar seu sistema.
 
-3. Nessa ultima etapa, desinstale os componentes do WSL2. Pesquise por "Recursos do Windows", você verá *Ativar ou desativar recursos do Windows*, selecione e siga em frente. Desative *Subsistema do Windows para Linux* e *Plataforma de Máquina Virtual*.
+3. Desinstale os componentes do WSL2. Pesquise por *Recursos do Windows*, você deverá ver algo como ***Ativar ou desativar recursos do Windows***, selecione e siga em frente. Desative *Subsistema do Windows para Linux* e *Plataforma de Máquina Virtual*.
 
 4. Reinicie seu PC.
+
+5. Após a desinstalação, poderá permanecer alguns resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretenção de anexar esse disco em uma futura instalação.
+
+    ```powershell
+    C:\Users\<Usuário>\AppData\Local\Packages\<Distro>\LocalState
+    ```
