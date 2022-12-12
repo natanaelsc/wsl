@@ -20,7 +20,7 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
   - [GitHub](/github.md)
 
-  -
+  - [Docker](/)
 
 - [Referência](#referência)
 
@@ -40,19 +40,19 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
 2. Reinicie seu PC.
 
-- Na inicialização será aberta a janela da sua distro para que você defina sua senha.
+Na inicialização será aberta a janela da sua distro para que você defina sua senha.
 
-- A distro instalada por padrão é a Ubuntu, você pode instalar outras e quantas quiser, o limite é sua máquina.
+A distro instalada por padrão é a Ubuntu, você pode instalar outras e quantas quiser, o limite é sua máquina.
 
-    ```powershell
-    wsl --install <Distro>
-    ```
+```powershell
+wsl --install <Distro>
+```
 
-- Recomendo atualizar os pacotes.
+Recomendo atualizar todos os pacotes.
 
-    ```sh
-    sudo apt update && sudo apt upgrade -y
-    ```
+```sh
+sudo apt update && sudo apt upgrade -y
+```
 
 ## Desinstalação
 
@@ -60,9 +60,9 @@ Se você não gostou da distro instalada ou simplemente quer se livrar dessa bag
 
 1. Siga: ***Configurações > Aplicativos > Aplicativos instalados ou algo parecido > Pesquise sua distro > Selecione desinstalar > Desinstalar de novo***. Esses passos devem está corretos ou fazerem algum sentido, eu realmente não me recordo.
 
-2. Na mesma aba de aplicativos, procure por *Windows Subsystem for Linux update* e coisas parecidas com *subs* e *linux*, desinstale todas, cuidado pra não desinstalar seu sistema.
+2. Na mesma aba de aplicativos, procure por ***Windows Subsystem for Linux update*** e coisas parecidas com ***subs*** e ***linux***, desinstale todas, cuidado pra não desinstalar seu sistema.
 
-3. Desinstale os componentes do WSL2. Pesquise por *Recursos do Windows*, você deverá ver algo como ***Ativar ou desativar recursos do Windows***, selecione e siga em frente. Desative *Subsistema do Windows para Linux* e *Plataforma de Máquina Virtual*.
+3. Desinstale os componentes do WSL2. Pesquise por ***Recursos do Windows***, você deverá ver algo como ***Ativar ou desativar recursos do Windows***, selecione e siga em frente. Desative ***Subsistema do Windows para Linux*** e ***Plataforma de Máquina Virtual***.
 
 4. Como administrador, abra o PowerSheel ou CMD e execute o comando:
 
@@ -72,7 +72,7 @@ Se você não gostou da distro instalada ou simplemente quer se livrar dessa bag
 
 5. Reinicie seu PC.
 
-6. Após a desinstalação, poderá permanecer alguns resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretenção de anexar esse disco em uma futura instalação.
+6. Após a desinstalação, pode ser que permaneça resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretenção de anexar esse disco em uma futura instalação.
 
     ```powershell
     C:\Users\<Usuário>\AppData\Local\Packages\<Distro>\LocalState
@@ -120,11 +120,11 @@ Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na dis
 
     ```conf
     [boot]
-    systemd=true
+    systemd=true # Habilita o systemd
 
     [automount]
-    enabled = true
-    root = /mnt
+    enabled = true # Monta automanticamente os discos de sua máquina na distro
+    root = /mnt # Ponto de montagem
     ```
 
 3. Reinicie suas distro
