@@ -1,0 +1,7 @@
+[wsl2]
+memory=8GB
+processors=1
+swap=8GB
+swapfile=D:\\temp\\wsl-swap.vhdx
+pageReporting=false
+localhostforwarding=true
