@@ -14,7 +14,7 @@ Nessa sessão você verá como instalar e configurar o git na sua WSL.
 
 * [Mais](#mais)
 
-  * [Inicializando Agent SSH com chave de segurança](#inicializando-agent-ssh-com-chave-de-segurança)
+  * [Inicializando Agent SSH com chave de segurança](#inicializando-agent-ssh)
 
   * [O arquivo .gitconfig](#o-arquivo-gitconfig)
 

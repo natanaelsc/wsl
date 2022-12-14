@@ -158,44 +158,44 @@ Essa é [minha configuração](/config-files/wsl.conf), você pode encontrar mai
 
 - Com DiskPart (Qualquer versão do Windows)
 
-    1. Coloque seu WSL pra dormir:
+1. Coloque seu WSL pra dormir:
 
-        ```shell
-        wsl --shutdown
-        ```
+    ```shell
+    wsl --shutdown
+    ```
 
-    2. Abra o DiskPart:
+2. Abra o DiskPart:
 
-        ```shell
-        diskpart
-        ```
+    ```shell
+    diskpart
+    ```
 
-    3. Selecione o arquivo de disco virtual (.vhdx) do seu WSL. Verifique qual o caminho que está localizada na sua máquina seguindo como exemplo o caminho abaixo:
+3. Selecione o arquivo de disco virtual (.vhdx) do seu WSL. Verifique qual o caminho que está localizada na sua máquina seguindo como exemplo o caminho abaixo:
 
-        ```shell
-        select vdisk file="C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx"
-        ```
+    ```shell
+    select vdisk file="C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx"
+    ```
 
-    4. Anexe o disco:
+4. Anexe o disco:
 
-        ```shell
-        attach vdisk readonly
-        ```
+    ```shell
+    attach vdisk readonly
+    ```
 
-    5. Compacte.
+5. Compacte.
 
-        ```shell
-        compact vdisk
-        ```
+    ```shell
+    compact vdisk
+    ```
 
-    6. Desanexe o disco e saia.
+6. Desanexe o disco e saia.
 
-        ```shell
-        detach vdisk
-        exit
-        ```
+    ```shell
+    detach vdisk
+    exit
+    ```
 
-    Seu disco virtual (.vhdx) deve ficar menor.
+Seu disco virtual (.vhdx) deve ficar menor.
 
 ## Referência
 
