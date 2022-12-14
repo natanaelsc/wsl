@@ -10,8 +10,6 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
 - [Instalação](#instalação)
 
-- [Desinstalação](#desinstalação)
-
 - [Configurações](#configurações)
 
   - [Configuração Global](#configuração-global)
@@ -30,7 +28,9 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
   - [Otimizando Disco Virtual (.vhdx)](#otimizando-disco-virtual-vhdx)
 
-- [Referência](#referência)
+- [Desinstalação](#desinstalação)
+
+- [Referências](#referências)
 
 ## Requisitos
 
@@ -61,30 +61,6 @@ Recomendo atualizar todos os pacotes.
 ```sh
 sudo apt update && sudo apt upgrade -y
 ```
-
-## Desinstalação
-
-Se você não gostou da distro instalada ou simplemente quer se livrar dessa bagaça, está no lugar certo. Daqui em diante vou te mostrar como ser feliz de novo.
-
-1. Siga: ***Configurações > Aplicativos > Aplicativos instalados ou algo parecido > Pesquise sua distro > Selecione desinstalar > Desinstalar de novo***. Esses passos devem está corretos ou fazerem algum sentido, eu realmente não me recordo.
-
-2. Na mesma aba de aplicativos, procure por ***Windows Subsystem for Linux update*** e coisas parecidas com ***subs*** e ***linux***, desinstale todas, cuidado pra não desinstalar seu sistema.
-
-3. Desinstale os componentes do WSL2. Pesquise por ***Recursos do Windows***, você deverá ver algo como ***Ativar ou desativar recursos do Windows***, selecione e siga em frente. Desative ***Subsistema do Windows para Linux*** e ***Plataforma de Máquina Virtual***.
-
-4. Como administrador, abra o PowerSheel ou CMD e execute o comando:
-
-    ```sh
-    wsl --unregister <Distro>
-    ```
-
-5. Reinicie seu PC.
-
-6. Após a desinstalação, pode ser que permaneça resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretensão de anexar esse disco em uma futura instalação.
-
-    ```powershell
-    C:\Users\<Usuário>\AppData\Local\Packages\<Distro>\LocalState
-    ```
 
 ## Configurações
 
@@ -196,6 +172,30 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mo
     ```
 
 Seu disco virtual (.vhdx) deve ficar menor.
+
+## Desinstalação
+
+Se você não gostou da distro instalada ou simplemente quer se livrar dessa bagaça, está no lugar certo. Daqui em diante vou te mostrar como ser feliz de novo.
+
+1. Siga: ***Configurações > Aplicativos > Aplicativos instalados ou algo parecido > Pesquise sua distro > Selecione desinstalar > Desinstalar de novo***. Esses passos devem está corretos ou fazerem algum sentido, eu realmente não me recordo.
+
+2. Na mesma aba de aplicativos, procure por ***Windows Subsystem for Linux update*** e coisas parecidas com ***subs*** e ***linux***, desinstale todas, cuidado pra não desinstalar seu sistema.
+
+3. Desinstale os componentes do WSL2. Pesquise por ***Recursos do Windows***, você deverá ver algo como ***Ativar ou desativar recursos do Windows***, selecione e siga em frente. Desative ***Subsistema do Windows para Linux*** e ***Plataforma de Máquina Virtual***.
+
+4. Como administrador, abra o PowerSheel ou CMD e execute o comando:
+
+    ```sh
+    wsl --unregister <Distro>
+    ```
+
+5. Reinicie seu PC.
+
+6. Após a desinstalação, pode ser que permaneça resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretensão de anexar esse disco em uma futura instalação.
+
+    ```powershell
+    C:\Users\<Usuário>\AppData\Local\Packages\<Distro>\LocalState
+    ```
 
 ## Referências
 
