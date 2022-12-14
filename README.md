@@ -22,7 +22,7 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
   - [zsh](/zhs.md)
 
-  - [asf](/asdf.md)
+  - [asdf](/asdf.md)
 
 - [Mais](#mais)
 
