@@ -10,7 +10,7 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
 - [Instalação](#instalação)
 
-- [Desisntalação](#desinstalação)
+- [Desinstalação](#desinstalação)
 
 - [Configurações](#configurações)
 
@@ -18,9 +18,17 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
   - [Configuração Local](#configuração-local)
 
+  - [Docker](/docker.md)
+
   - [GitHub](/github.md)
 
-  - [Docker](/)
+  - [zsh](/zhs.md)
+
+  - [asf](/asdf.md)
+
+- [Mais](#mais)
+
+  - [Otimizando Disco Virtual (.vhdx)](#otimizando-disco-virtual-vhdx)
 
 - [Referência](#referência)
 
@@ -72,7 +80,7 @@ Se você não gostou da distro instalada ou simplemente quer se livrar dessa bag
 
 5. Reinicie seu PC.
 
-6. Após a desinstalação, pode ser que permaneça resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretenção de anexar esse disco em uma futura instalação.
+6. Após a desinstalação, pode ser que permaneça resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretensão de anexar esse disco em uma futura instalação.
 
     ```powershell
     C:\Users\<Usuário>\AppData\Local\Packages\<Distro>\LocalState
@@ -134,6 +142,60 @@ Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na dis
     ```
 
 Essa é [minha configuração](/config-files/wsl.conf), você pode encontrar mais exemplos no arquivo [wsl.conf.exemple](/config-files/wsl.conf.exemple)
+
+## Mais
+
+### Otimizando Disco Virtual (.vhdx)
+
+- Com Optimize-VHD (Não funciona no Windows Home)
+
+    Ative o Hyper-V.
+
+    ```shell
+    Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx -Mode Full
+    Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mode Full
+    ```
+
+- Com DiskPart (Qualquer versão do Windows)
+
+    1. Coloque seu WSL pra dormir:
+
+        ```shell
+        wsl --shutdown
+        ```
+
+    2. Abra o DiskPart:
+
+        ```shell
+        diskpart
+        ```
+
+    3. Selecione o arquivo de disco virtual (.vhdx) do seu WSL. Verifique qual o caminho que está localizada na sua máquina seguindo como exemplo o caminho abaixo:
+
+        ```shell
+        select vdisk file="C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx"
+        ```
+
+    4. Anexe o disco:
+
+        ```shell
+        attach vdisk readonly
+        ```
+
+    5. Compacte.
+
+        ```shell
+        compact vdisk
+        ```
+
+    6. Desanexe o disco e saia.
+
+        ```shell
+        detach vdisk
+        exit
+        ```
+
+    Seu disco virtual (.vhdx) deve ficar menor.
 
 ## Referência
 

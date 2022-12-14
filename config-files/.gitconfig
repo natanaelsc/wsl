@@ -1,0 +1,20 @@
+# Este é meu arquivo de configuração do Git
+
+[user]
+        name = natanaelsc
+        email = 53065432+natanaelsc96@users.noreply.github.com
+[credential]
+        helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager-core.exe
+[core]
+        editor = code
+[alias]
+        s = !git status -s                      # git status resumido
+        ac = !git add . && git commit -m        # adiciona todos os arquivos e commita
+        c = !git checkout -b                    # git checkout branch
+        l = !git log --pretty=format:'%C(yellow)%h%C(cyan)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
+        b = !git branch -a
+        i = !git init && touch .gitignore && touch README.md && git c 'initial commit' && git branch -M main    # inicializa o repositorio e cria a branch
+        p = !git push
+        rop = !git remote add origin git@github.com:natanaelsc/`basename $(pwd)`.git && git push -u origin main  # adiciona o repositorio remoto e faz o push
+[init]
+        defaultBranch = main
