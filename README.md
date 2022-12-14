@@ -147,16 +147,16 @@ Essa é [minha configuração](/config-files/wsl.conf), você pode encontrar mai
 
 ### Otimizando Disco Virtual (.vhdx)
 
-- Com Optimize-VHD (Não funciona no Windows Home)
+#### Com Optimize-VHD (Não funciona no Windows Home)**
 
-    Ative o Hyper-V.
+Ative o Hyper-V.
 
-    ```shell
-    Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx -Mode Full
-    Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mode Full
-    ```
+```shell
+Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx -Mode Full
+Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mode Full
+```
 
-- Com DiskPart (Qualquer versão do Windows)
+#### Com DiskPart (Qualquer versão do Windows)
 
 1. Coloque seu WSL pra dormir:
 
@@ -197,7 +197,7 @@ Essa é [minha configuração](/config-files/wsl.conf), você pode encontrar mai
 
 Seu disco virtual (.vhdx) deve ficar menor.
 
-## Referência
+## Referências
 
 <https://learn.microsoft.com/pt-br/windows/wsl/install>
 
