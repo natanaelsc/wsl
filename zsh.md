@@ -14,6 +14,8 @@
   
   * [Zsh NVM](#zsh-nvm)
 
+* [Definindo terminal padrão no VSCode](#definido-terminal-padrão-no-vscode)
+
 ## Instalação
 
 ```sh
@@ -109,3 +111,11 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 Esse plugins carrega o [Autoenv](https://github.com/hyperupcall/autoenv).
 
 * Adicione `autoenv` aos plugins no arquivo `.zshrc`.
+
+### Definido terminal padrão no VSCode
+
+Adicione as suas configurações (settings.json) a linha abaixo:
+
+```json
+  "terminal.integrated.defaultProfile.linux": "zsh",
+```
