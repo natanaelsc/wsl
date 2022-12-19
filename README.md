@@ -1,8 +1,6 @@
 # Windows Subsystem for Linux (WSL)
 
-A melhor forma de aproveitar o Linux e o Windows ao mesmo tempo em um máquina com Windows é o WSL.
-
-Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Linux, etc) e brincar com os utilitários e ferramentas de linha de comando bash, isso sem modificação, sem a sobrecarga de uma máquina virtual ou configuração dual boot.
+O WSL te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Linux, etc) sem modificação, sem a sobrecarga de uma máquina virtual ou configuração dual boot.
 
 ## Visão Geral
 
@@ -24,7 +22,7 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
   - [asdf](/asdf.md)
 
-- [Mais](#mais)
+- [Veja mains](#veja-mais)
 
   - [Otimizando Disco Virtual (.vhdx)](#otimizando-disco-virtual-vhdx)
 
@@ -40,7 +38,7 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
 ## Instalação
 
-1. Abra o PowerShell ou CMD como administrador e insira o comando abaixo:
+1. No PowerShell ou CMD como administrador execute o comando abaixo:
 
     ```powershell
     wsl --install
@@ -48,7 +46,7 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
 2. Reinicie seu PC.
 
-Na inicialização será aberta a janela da sua distro para que você defina sua senha.
+3. Na inicialização será aberta a janela da sua distro para que você defina sua senha.
 
 A distro instalada por padrão é a Ubuntu, você pode instalar outras e quantas quiser, o limite é sua máquina.
 
@@ -66,15 +64,23 @@ sudo apt update && sudo apt upgrade -y
 
 ### Global
 
-Defina a configuração que engloba todas as suas distribuições Linux instaladas. Funciona somente na versão 2 do WSL.
+Defina a configuração que engloba todas as suas distribuições Linux instaladas. Funciona somente no WSL2.
 
 1. Abra ou crie o arquivo `.wslconfig` na sua pasta de usuário `%UserProfile%` do Windows.
+
+    **CMD**
+
+    ```cmd
+    notepad %USERPROFILE%\.wslconfig
+    ```
+
+    **PowerShell**
 
     ```powershell
     notepad C:\Users\<Usuário>\.wslconfig
     ```
 
-2. Copie e cole as linhas abaixo no arquivo ou ajuste se houver alguma configuração.
+2. Copie e cole as linhas abaixo no arquivo ou ajuste se houver alguma configuração. Você pode ver exemplos [aqui](/my-config-files/.wslconfig.exemple) ou em [minha configuração atual](/my-config-files/.wslconfig).
 
     ````conf
     [wsl2]
@@ -82,13 +88,11 @@ Defina a configuração que engloba todas as suas distribuições Linux instalad
     processors=1 # Limita quantidade de processadores virtuais
     ````
 
-3. Reinicie suas distro
+3. Reinicie sua distro.
 
     ```powershell
     wsl --shutdown
     ```
-
-Essa é [minha configuração](/my-config-files/.wslconfig), você pode encontrar mais exemplos no arquivo [.wslconfig.exemple](/my-config-files/.wslconfig.exemple)
 
 ### Local
 
@@ -100,7 +104,7 @@ Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na dis
     sudo nano /etc/wsl.conf
     ```
 
-2. Você pode definir algumas dessas configurações:
+2. Você pode definir algumas dessas configurações ou ver mais exemplos [aqui](/my-config-files/wsl.conf.exemple). Essa é [minha configuração atual](/my-config-files/wsl.conf).
 
     ```conf
     [boot]
@@ -111,21 +115,19 @@ Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na dis
     root = /mnt # Ponto de montagem
     ```
 
-3. Reinicie suas distro
+3. Reinicie sua distro.
 
     ```powershell
     wsl --shutdown
     ```
 
-Essa é [minha configuração](/my-config-files/wsl.conf), você pode encontrar mais exemplos no arquivo [wsl.conf.exemple](/my-config-files/wsl.conf.exemple)
-
-## Mais
+## Veja mais
 
 ### Otimizando Disco Virtual (.vhdx)
 
 #### Optimize-VHD (Não funciona no Windows Home)**
 
-Ative o Hyper-V.
+Antes, ative o Hyper-V.
 
 ```shell
 Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx -Mode Full
@@ -134,7 +136,7 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mo
 
 #### DiskPart (Qualquer versão do Windows)
 
-1. Coloque seu WSL pra dormir:
+1. Desligue sua distro:
 
     ```shell
     wsl --shutdown
@@ -175,9 +177,7 @@ Seu disco virtual (.vhdx) deve ficar menor.
 
 ## Desinstalação
 
-Se você não gostou da distro instalada ou simplemente quer se livrar dessa bagaça, está no lugar certo. Daqui em diante vou te mostrar como ser feliz de novo.
-
-1. Siga: ***Configurações > Aplicativos > Aplicativos instalados ou algo parecido > Pesquise sua distro > Selecione desinstalar > Desinstalar de novo***. Esses passos devem está corretos ou fazerem algum sentido, eu realmente não me recordo.
+1. Siga: ***Configurações → Aplicativos → Aplicativos instalados ou algo parecido → Pesquise sua distro → Selecione desinstalar → Desinstalar de novo***. Esses passos devem está corretos ou fazerem algum sentido, eu realmente não me recordo.
 
 2. Na mesma aba de aplicativos, procure por ***Windows Subsystem for Linux update*** e coisas parecidas com ***subs*** e ***linux***, desinstale todas, cuidado pra não desinstalar seu sistema.
 
