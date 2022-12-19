@@ -30,7 +30,7 @@ sudo apt-get install git -y
 
 Escolha uma das opções abaixo para configurar.
 
-### Integração Windows/WSL
+### Integração Windows/WSL **(Recomendada)**
 
 Você precisa ter o Git instalado no Windows. Baixe o pacote de instalação mais recente no [site oficial do Git](https://git-scm.com/download/win).
 
