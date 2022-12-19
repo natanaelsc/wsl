@@ -1,6 +1,4 @@
-# GitHub
-
-Nessa sessão você verá como instalar e configurar o git na sua WSL.
+# Git
 
 ## Visão Geral
 
