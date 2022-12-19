@@ -1,6 +1,6 @@
 # Subsistema do Windows para Linux (WSL)
 
-O WSL te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Linux, etc) sem modificação, sem a sobrecarga de uma máquina virtual ou configuração dual boot.
+O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Linux, etc) sem modificação, sem a sobrecarga de uma máquina virtual ou configuração dual boot.
 
 ## Visão Geral
 
