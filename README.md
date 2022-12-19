@@ -18,7 +18,7 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
   - [Docker](/docker.md)
 
-  - [GitHub](/github.md)
+  - [Git](/git.md)
 
   - [zsh](/zhs.md)
 
@@ -123,7 +123,7 @@ Essa é [minha configuração](/my-config-files/wsl.conf), você pode encontrar 
 
 ### Otimizando Disco Virtual (.vhdx)
 
-#### Com Optimize-VHD (Não funciona no Windows Home)**
+#### Optimize-VHD (Não funciona no Windows Home)**
 
 Ative o Hyper-V.
 
@@ -132,7 +132,7 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimite
 Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mode Full
 ```
 
-#### Com DiskPart (Qualquer versão do Windows)
+#### DiskPart (Qualquer versão do Windows)
 
 1. Coloque seu WSL pra dormir:
 
