@@ -1,5 +1,4 @@
 # Este é meu arquivo de configuração do Git
-
 [user]
         name = natanaelsc
         email = 53065432+natanaelsc96@users.noreply.github.com
@@ -13,7 +12,7 @@
         c = !git checkout -b                    # git checkout branch
         l = !git log --pretty=format:'%C(yellow)%h%C(cyan)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
         b = !git branch -a
-        i = !git init && touch .gitignore && touch README.md && git c 'initial commit' && git branch -M main    # inicializa o repositorio e cria a branch
+        i = !git init && touch .gitignore && touch README.md && git ac 'initial commit' && git branch -M main    # inicializa o repositorio e cria a branch
         p = !git push
         rop = !git remote add origin git@github.com:natanaelsc/`basename $(pwd)`.git && git push -u origin main  # adiciona o repositorio remoto e faz o push
 [init]
