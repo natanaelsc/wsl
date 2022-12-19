@@ -152,7 +152,7 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala�
 
 - *Got permission denied while trying to connect to the Docker daemon socket at unix*
 
-    Caso se depare com um erro do tipo utilizando comandos do Docker CLI sem `sudo`, você poderá resolve-lo adicionando seu usuário ao grupo `docker` ou seguindo o passo do primeiro item em [mais](#mais).
+    Caso se depare com um erro do tipo utilizando comandos do Docker CLI sem `sudo`, você poderá resolve-lo adicionando seu usuário ao grupo `docker` ou seguindo o passo do primeiro item em [veja mais](#veja-mais).
 
     ```sh
     sudo usermod -aG docker $USER

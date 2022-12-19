@@ -8,7 +8,7 @@ Nessa sessão você verá como instalar e configurar o git na sua WSL.
 
 * [Configuração](#configuração)
 
-  * [Integração Windows/WSL](#integração-windowswsl)
+  * [Integração Windows/WSL](#integração-windowswsl-recomendada)
 
   * [Chave SSH](#chave-ssh)
 
