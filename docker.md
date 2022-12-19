@@ -1,7 +1,5 @@
 # Docker WSL
 
-A melhor maneira de rodar o Docker é de forma nativa no Linux. Esse guia apresenta o passo a passo para instalação do Docker no WSL.
-
 ## Instalação
 
 1. Atualize e configure o repositório:
@@ -117,7 +115,7 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala�
     sudo brctl delbr docker_gwbridge
     ```
 
-## Mais
+## Veja mais
 
 - Para permite que seu usuário execute o `sudo` sem digitar senha a todo momento que chamar o comando `docker`. Use essa opção ou a adicione seu usuário ao grupo docker (veja no passo 6 da [instalação](#instalação)).
 
@@ -143,7 +141,7 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala�
     source .zshrc
     ```
 
-- Iniciando Docker com WSL no Windows 11. Adicione a linha abaixo ou configure o arquivo [wsl.conf](/README.md/#configuração-local), se já houver esse campo. Caso exista a opção `systemd=true`, não será necessário adicionar essa linha.
+- Iniciando Docker com WSL no Windows 11. Adicione a linha abaixo ou configure o arquivo [wsl.conf](/README.md/#local), se já houver esse campo. Caso exista a opção `systemd=true`, não será necessário adicionar essa linha.
 
     ```sh
     [boot]
@@ -152,7 +150,7 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala�
 
 ## Problemas
 
-1. *Got permission denied while trying to connect to the Docker daemon socket at unix*
+- *Got permission denied while trying to connect to the Docker daemon socket at unix*
 
     Caso se depare com um erro do tipo utilizando comandos do Docker CLI sem `sudo`, você poderá resolve-lo adicionando seu usuário ao grupo `docker` ou seguindo o passo do primeiro item em [mais](#mais).
 
@@ -161,7 +159,7 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala�
     newgrp docker
     ```
 
-## Referência
+## Referências
 
 <https://docs.docker.com/get-docker>
 
