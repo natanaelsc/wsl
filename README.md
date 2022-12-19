@@ -10,11 +10,11 @@ Esse sistema te permite instalar uma distro Linux (como Ubuntu, Debian, Arch Lin
 
 - [Instalação](#instalação)
 
-- [Configurações](#configurações)
+- [Configuração](#configuração)
 
-  - [Configuração Global](#configuração-global)
+  - [Global](#global)
 
-  - [Configuração Local](#configuração-local)
+  - [Local](#local)
 
   - [Docker](/docker.md)
 
@@ -62,9 +62,9 @@ Recomendo atualizar todos os pacotes.
 sudo apt update && sudo apt upgrade -y
 ```
 
-## Configurações
+## Configuração
 
-### Configuração Global
+### Global
 
 Defina a configuração que engloba todas as suas distribuições Linux instaladas. Funciona somente na versão 2 do WSL.
 
@@ -88,9 +88,9 @@ Defina a configuração que engloba todas as suas distribuições Linux instalad
     wsl --shutdown
     ```
 
-Essa é [minha configuração](/config-files/.wslconfig), você pode encontrar mais exemplos no arquivo [.wslconfig.exemple](/config-files/.wslconfig.exemple)
+Essa é [minha configuração](/my-config-files/.wslconfig), você pode encontrar mais exemplos no arquivo [.wslconfig.exemple](/my-config-files/.wslconfig.exemple)
 
-### Configuração Local
+### Local
 
 Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na distro instalada.
 
@@ -117,7 +117,7 @@ Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na dis
     wsl --shutdown
     ```
 
-Essa é [minha configuração](/config-files/wsl.conf), você pode encontrar mais exemplos no arquivo [wsl.conf.exemple](/config-files/wsl.conf.exemple)
+Essa é [minha configuração](/my-config-files/wsl.conf), você pode encontrar mais exemplos no arquivo [wsl.conf.exemple](/my-config-files/wsl.conf.exemple)
 
 ## Mais
 
