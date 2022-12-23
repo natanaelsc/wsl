@@ -77,7 +77,7 @@
       --restart=always \
       --pull=always \
       -v /var/run/docker.sock:/var/run/docker.sock \
-      -v /home/docker/portainer/data:/data \
+      -v ~/.docker/portainer/data:/data \
       portainer/portainer-ce:latest \
       -H unix:///var/run/docker.sock
     ```
