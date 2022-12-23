@@ -117,19 +117,19 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala�
 
 ## Veja mais
 
-- Para permite que seu usuário execute o `sudo` sem digitar senha a todo momento que chamar o comando `docker`. Use essa opção ou a adicione seu usuário ao grupo docker (veja no passo 6 da [instalação](#instalação)).
+- Para permitir que seu usuário execute o `sudo` sem digitar senha a todo momento que chamar o comando `docker`. Use a opção abaixo ou a adicione seu usuário ao grupo docker (veja no passo 6 da [instalação](#instalação)).
 
     ```sh
     sudo visudo
     ```
 
-    Adicione na ultima linha do arquivo.
+    Adicione na ultima linha do arquivo:
 
     ```conf
     <nome_de_usuário> ALL=(ALL) NOPASSWD: /usr/bin/dockerd
     ```
 
-- Iniciando Docker com WSL no Windows 10. Você precisa ter o [zsh](/zsh.md) instalado para funcionar.
+- Iniciando Docker na inicialização do WSL1 no Windows 10. Você precisa ter o [zsh](/zsh.md) instalado para funcionar.
 
     ```sh
     echo '# Start Docker daemon automatically when logging in if not running.' >> ~/.zshrc
@@ -141,7 +141,7 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala�
     source .zshrc
     ```
 
-- Iniciando Docker com WSL no Windows 11. Adicione a linha abaixo ou configure o arquivo [wsl.conf](/README.md/#local), se já houver esse campo. Caso exista a opção `systemd=true`, não será necessário adicionar essa linha.
+- Iniciando Docker na inicialização do WSL2 no Windows 11. Adicione a linha abaixo ou configure o arquivo [wsl.conf](/README.md/#local), se já houver esse campo. Caso a opção `systemd` esteja como `true`, não será necessário adicionar a linha abaixo.
 
     ```sh
     [boot]
