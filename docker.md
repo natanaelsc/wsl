@@ -62,10 +62,10 @@
 
 6. **(Opcional)** Adicione seu usuário ao grupo docker para executar comandos sem sudo:
 
-    ´´´sh
+    ```sh
     sudo usermod -aG docker $USER
     newgrp docker
-    ´´´
+    ```
 
 7. **(Opcional)** Instale o Portainer, interface web para gerenciamento Docker.
 
