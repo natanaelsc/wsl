@@ -22,7 +22,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 CASE_SENSITIVE="true"
 
 # Plugins
-plugins=(git ssh-agent zsh-autosuggestions zsh-nvm asdf)
+plugins=(git zsh-autosuggestions zsh-nvm asdf)
 
 source $ZSH/oh-my-zsh.sh
 
