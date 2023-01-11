@@ -38,15 +38,28 @@ O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Li
 
 ## Instalação
 
-1. No PowerShell ou CMD como administrador execute o comando abaixo:
+1. Habilite o recurso do **Subsistema do Windows para Linux** e a **Plataforma de Máquina Virtual**
+
+    ```powershell
+    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    ```
+
+2. Atribua a versão padrão do WSL para a versão 2
+
+    ```powershell
+    wsl --set-default-version 2
+    ```
+
+3. Execute o comando
 
     ```powershell
     wsl --install
     ```
 
-2. Reinicie seu PC.
+4. Reinicie seu PC.
 
-3. Na inicialização será aberta a janela da sua distro para que você defina sua senha.
+5. Na inicialização será aberta a janela da sua distro para que você defina sua senha.
 
 A distro instalada por padrão é a Ubuntu, você pode instalar outras e quantas quiser, o limite é sua máquina.
 
@@ -54,7 +67,7 @@ A distro instalada por padrão é a Ubuntu, você pode instalar outras e quantas
 wsl --install <Distro>
 ```
 
-Recomendo atualizar todos os pacotes.
+Recomendo atualizar todos os pacotes após a instalação.
 
 ```sh
 sudo apt update && sudo apt upgrade -y
