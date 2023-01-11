@@ -22,7 +22,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 CASE_SENSITIVE="true"
 
 # Plugins
-plugins=(git ssh-agent zsh-autosuggestions zsh-nvm asdf)
+plugins=(git zsh-autosuggestions zsh-nvm asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -32,7 +32,7 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias zshconfig="mate ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
-alias dev="cd ~/Development"
+alias dev="cd ~/development"
 alias dockerstop="docker stop $(docker ps -aq)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
