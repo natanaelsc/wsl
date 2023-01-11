@@ -14,9 +14,9 @@ O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Li
 
   - [Local](#local)
 
-  - [Docker](/docker.md)
-
   - [Git](/git.md)
+
+  - [Docker](/docker.md)
 
   - [zsh](/zhs.md)
 
