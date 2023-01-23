@@ -10,6 +10,8 @@
 
   * [Chave SSH](#chave-ssh)
 
+  * [Assinatura de Commits com Chave GPG](#assinatura-de-commits-com-chave-gpg)
+
 * [Mais](#mais)
 
   * [Inicializando Agent SSH com chave de segurança](#inicializando-agent-ssh)
@@ -93,6 +95,34 @@ O arquivo de configuração pode ser encontrados em `%USERPROFILE%\.gitconfig` n
     ***Hi natanaelsc! You've successfully authenticated, but GitHub does not provide shell access.***
 
     Para clonar um repositório privado, use a conexão SSH ao invés do endereço do mesmo.
+
+## Assinatura de Commits com Chave GPG
+
+1. Execute o comando para gerar nova chave:
+
+    ```sh
+    gpg --full-generate-key
+    ```
+
+2. Nas etapas seguinte defina as opções:
+
+    1. **1** para `(1) RSA and RSA (default)`
+
+    2. **4096** para o tamanho da chave.
+
+    3. **1y** ano para expiração.
+
+    4. Confirme.
+
+3. Adicione seu nome e email do github.
+
+Sua chave será armazenada em `~/.gnupg`.
+
+Para listar suas chaves execute:
+
+```sh
+gpg --list-secret-key --keyid-form LONG
+```
 
 ## Mais
 
