@@ -98,7 +98,7 @@ O arquivo de configuração pode ser encontrados em `%USERPROFILE%\.gitconfig` n
 
 ## Assinatura de Commits com Chave GPG
 
-1. Execute o comando para gerar nova chave:
+1. Execute o comando para gerar chave GPG:
 
     ```sh
     gpg --full-generate-key
@@ -106,23 +106,60 @@ O arquivo de configuração pode ser encontrados em `%USERPROFILE%\.gitconfig` n
 
 2. Nas etapas seguinte defina as opções:
 
-    1. **1** para `(1) RSA and RSA (default)`
+    1. **1** para o tipo `(1) RSA and RSA (default)`
 
     2. **4096** para o tamanho da chave.
 
-    3. **1y** ano para expiração.
+    3. **1y** ano para período de expiração e OK.
 
-    4. Confirme.
+3. Adicione seu nome e email do github. Sua chave será armazenada em `~/.gnupg`.
 
-3. Adicione seu nome e email do github.
+4. Liste suas chaves GPG:
 
-Sua chave será armazenada em `~/.gnupg`.
+    ```sh
+    gpg --list-secret-key --keyid-form LONG
+    ```
 
-Para listar suas chaves execute:
+5. Copie o ID da chave que você deseja adicionar ao GitHub. Está localizado entre `sec   rsa4096/` e a data de criaçã da chave. Exemplo:
 
-```sh
-gpg --list-secret-key --keyid-form LONG
-```
+    ```txt
+    sec   rsa4096/95693A1975F2F1F0 2023-01-23 [SC] [expires: 2024-01-23]
+    ```
+
+6. Exporte a chave publica:
+
+    ```sh
+    gpg --armor --export 95693A1975F2F1F0
+    ```
+
+7. Na sua conta do GitHub siga para **Settings → SSH and GPG keys → GPG keys → New GPG key**. Cole a chave pública exportada e **add GPG key**.
+
+8. Defina sua chave padrão de assinatura:
+
+    ```sh
+    git config --global user.signingkey 95693A1975F2F1F0 # ID de sua chave
+    ```
+
+9. Adicione a variável `export GPG_TTY=$(tty)` ao arquivo `~/.bash_profile` ou `~/.zshrc`.
+
+10. Defina assinatura com chave GPG como padrão para **commits** de todos os repositórios:
+
+    ```sh
+    git config --global commit.gpgsign true
+    ```
+
+11. Defina assinatura com chave GPG como padrão para **tags** de todos os repositórios:
+
+    ```sh
+    git config --global tag.gpgsign true
+    ```
+
+12. Adicione a linha `use-agent` no arquivo `~/.gnupg/gpp.conf` e execute o agent gpg.
+
+    ```sh
+    echo "use-agent" >> ~/.gnupg/gpp.conf
+    gpgconf --launch gpg-agent
+    ```
 
 ## Mais
 

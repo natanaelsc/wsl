@@ -15,6 +15,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export LANG="en_US.UTF-8"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export GPG_TTY=$(tty)
 
 # Tema padrão
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -22,7 +23,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 CASE_SENSITIVE="true"
 
 # Plugins
-plugins=(git zsh-autosuggestions zsh-nvm asdf)
+plugins=(git git-flow-completion zsh-autosuggestions asdf)
 
 source $ZSH/oh-my-zsh.sh
 
