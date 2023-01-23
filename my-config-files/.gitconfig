@@ -2,7 +2,7 @@
 [user]
         name = natanaelsc
 	email = natanael96@live.com
-	signingkey = 95693A1975F2F1F0
+	signingkey = A803B77754459099
 [credential]
         helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [core]
