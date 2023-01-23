@@ -161,6 +161,22 @@ O arquivo de configuração pode ser encontrados em `%USERPROFILE%\.gitconfig` n
     gpgconf --launch gpg-agent
     ```
 
+### Adicionando mais um email
+
+1. Execute os comandos a seguir por etapa:
+
+    ```sh
+    gpg --edit-key 95693A1975F2F1F0
+    ```
+
+    ```sh
+    adduid
+    ```
+
+    Repeti o procedimento de adição seguido no [item 3](#assinatura-de-commits-com-chave-gpg).
+
+2. Selecione o email adicionado digitando `uid 2`, sendo 2 o valor do ID no meu caso. Digite `trust`, defina como `5` *5 = I trust ultimately* e confirme com `y`. Digite `save`
+
 ## Mais
 
 ### Inicializando Agent SSH
