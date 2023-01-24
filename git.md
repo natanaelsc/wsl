@@ -20,7 +20,7 @@
 
 ## Instalação
 
-O Git já vem instalado na maioria das distribuições WSL, no entanto, você pode querer atualizar para a versão mais recente.
+Por padrão, o git vem instalado nas distribuições WSL, no entanto, você pode querer atualizar para a versão mais recente.
 
 ```sh
 sudo apt-get install git -y
@@ -32,22 +32,26 @@ Escolha uma das opções abaixo para configurar.
 
 ### Integração Windows/WSL **(Recomendada)**
 
-Você precisa ter o Git instalado no Windows. Baixe o pacote de instalação mais recente no [site oficial do Git](https://git-scm.com/download/win).
+Você precisa ter o Git Bash instalado no Windows e com uma conta previamente configurada.
 
-1. Com as instalações concluídas no Windows e no [WSL](#instalação), configure o arquivo `.gitconfig`. No terminal, entre com os comandos abaixo substituindo as informações dos atributos para os campos de `user.name` e `user.email` pelas suas. Execute primeiro no Windows e depois no seu WSL.
+Baixe o pacote de instalação mais recente no [site oficial do Git](https://git-scm.com/download/win).
+
+1. Com as instalações concluídas no Windows e no [WSL](#instalação), configure o arquivo `.gitconfig`. No terminal, entre com os comandos abaixo substituindo as informações dos atributos para os campos de `user.name` e `user.email` pelas suas.
+
+    No meu caso:
 
     ```sh
-    git config --global user.name "nome_de_usuário"
-    git config --global user.email "seu_email@exemplo.com"
+    git config --global user.name "natanaelsc"
+    git config --global user.email "natanael96@live.com"
     ```
 
-2. Configure o Git Credential Manager. Apenas na sua distribuição Linux no WSL insira o comando abaixo:
+2. Configure o *Git Credential Manager*:
 
     ```sh
     git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager-core.exe"
     ```
 
-O arquivo de configuração pode ser encontrados em `%USERPROFILE%\.gitconfig` no Windows e em `\\wsl$\distro\home\$USER\.gitconfig` no WSL ou com `nano ~/.gitconfig`.
+O arquivo de configuração pode ser encontrados em `\\wsl$\distro\home\$USER\.gitconfig`.
 
 ### Chave SSH
 
@@ -92,11 +96,11 @@ O arquivo de configuração pode ser encontrados em `%USERPROFILE%\.gitconfig` n
 
     Se tudo estiver funcionando corretamente você verá:
 
-    ***Hi natanaelsc! You've successfully authenticated, but GitHub does not provide shell access.***
+    ***Hi seuusuário! You've successfully authenticated, but GitHub does not provide shell access.***
 
     Para clonar um repositório privado, use a conexão SSH ao invés do endereço do mesmo.
 
-## Assinatura de Commits com Chave GPG
+### Assinatura de Commits com Chave GPG
 
 1. Execute o comando para gerar chave GPG:
 
@@ -161,7 +165,7 @@ O arquivo de configuração pode ser encontrados em `%USERPROFILE%\.gitconfig` n
     gpgconf --launch gpg-agent
     ```
 
-### Adicionando mais um email
+#### Adicionando mais um email
 
 1. Execute os comandos a seguir por etapa:
 
