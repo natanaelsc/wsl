@@ -22,9 +22,7 @@ O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Li
 
   - [asdf](/asdf.md)
 
-- [Veja mains](#veja-mais)
-
-  - [Otimizando Disco Virtual (.vhdx)](#otimizando-disco-virtual-vhdx)
+- [Otimizando Disco Virtual (.vhdx)](#otimizando-disco-virtual-vhdx)
 
 - [Desinstalação](#desinstalação)
 
@@ -38,62 +36,54 @@ O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Li
 
 ## Instalação
 
-1. Habilite o recurso do **Subsistema do Windows para Linux** e a **Plataforma de Máquina Virtual**
+1. Habilite o recurso do **Subsistema do Windows para Linux** e a **Plataforma de Máquina Virtual**:
 
     ```powershell
     dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
     dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
     ```
 
-2. Atribua a versão padrão do WSL para a versão 2
+2. Atribua a versão padrão do WSL para a versão 2:
 
     ```powershell
     wsl --set-default-version 2
     ```
 
-3. Execute o comando
+3. Execute o comando de instalação:
 
     ```powershell
     wsl --install
     ```
 
-4. Reinicie seu PC.
+4. Reinicie o computador.
 
-5. Na inicialização será aberta a janela da sua distro para que você defina sua senha.
+5. Na inicialização, será apresentada a janela de sua distro para definição do usuário.
 
-A distro instalada por padrão é a Ubuntu, você pode instalar outras e quantas quiser, o limite é sua máquina.
-
-```powershell
-wsl --install <Distro>
-```
-
-Recomendo atualizar todos os pacotes após a instalação.
+6. Atualize os pacotes:
 
 ```sh
 sudo apt update && sudo apt upgrade -y
+```
+
+- A distro instalada por padrão é Ubuntu. Para instalar qualquer outra, execute o comando seguido do nome:
+
+```powershell
+wsl --install <Distro>
 ```
 
 ## Configuração
 
 ### Global
 
-Defina a configuração que engloba todas as suas distribuições Linux instaladas. Funciona somente no WSL2.
+Defina configuração que englobará todas as suas distribuições Linux (Somente no WSL2).
 
-1. Abra ou crie o arquivo `.wslconfig` na sua pasta de usuário `%UserProfile%` do Windows.
-
-    **CMD**
+1. Abra ou crie o arquivo `.wslconfig` na pasta de usuário windows `%UserProfile%`.
 
     ```cmd
     notepad %USERPROFILE%\.wslconfig
     ```
 
-    **PowerShell**
-
-    ```powershell
-    notepad C:\Users\<Usuário>\.wslconfig
-    ```
-
-2. Copie e cole as linhas abaixo no arquivo ou ajuste se houver alguma configuração. Você pode ver exemplos [aqui](/my-config-files/.wslconfig.exemple) ou em [minha configuração atual](/my-config-files/.wslconfig).
+2. Copie e cole as linhas abaixo no arquivo. Você pode ver exemplos [aqui](/my-config-files/.wslconfig.exemple) ou em [minha configuração atual](/my-config-files/.wslconfig).
 
     ````conf
     [wsl2]
@@ -101,7 +91,7 @@ Defina a configuração que engloba todas as suas distribuições Linux instalad
     processors=1 # Limita quantidade de processadores virtuais
     ````
 
-3. Reinicie sua distro.
+3. Reinicie sua distro wsl.
 
     ```powershell
     wsl --shutdown
@@ -134,11 +124,9 @@ Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na dis
     wsl --shutdown
     ```
 
-## Veja mais
+## Otimizando Disco Virtual (.vhdx)
 
-### Otimizando Disco Virtual (.vhdx)
-
-#### Optimize-VHD (Não funciona no Windows Home)**
+### Optimize-VHD (Não funciona no Windows Home)**
 
 Antes, ative o Hyper-V.
 
@@ -147,7 +135,7 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimite
 Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mode Full
 ```
 
-#### DiskPart (Qualquer versão do Windows)
+### DiskPart (Qualquer versão do Windows)
 
 1. Desligue sua distro:
 
@@ -185,8 +173,6 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mo
     detach vdisk
     exit
     ```
-
-Seu disco virtual (.vhdx) deve ficar menor.
 
 ## Desinstalação
 
