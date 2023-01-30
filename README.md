@@ -30,9 +30,9 @@ O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Li
 
 ## Requisitos
 
-- Windows 10 versão 2004 e superior (Build 19041 e superior) ou o Windows 11.
+- Windows 10 versão 2004 ou superior (Build 19041 ou superior) ou o Windows 11.
 
-- Recomendo no mínimo 8GB de RAM.
+- No mínimo 8GB de RAM.
 
 ## Instalação
 
@@ -65,33 +65,39 @@ O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Li
 sudo apt update && sudo apt upgrade -y
 ```
 
-- A distro instalada por padrão é Ubuntu. Para instalar qualquer outra, execute o comando seguido do nome:
+- A distro instalada por padrão é Ubuntu. Para instalar qualquer outra, execute o comando seguido do nome da distribuição:
 
 ```powershell
-wsl --install <Distro>
+wsl --install Debian
+```
+
+- Para visualizar a lista de distribuições disponíveis execute:
+
+```powershell
+wsl --list --online
 ```
 
 ## Configuração
 
 ### Global
 
-Defina configuração que englobará todas as suas distribuições Linux (Somente no WSL2).
+Definição de configuração global para todas as distribuições Linux **WSL2**.
 
-1. Abra ou crie o arquivo `.wslconfig` na pasta de usuário windows `%UserProfile%`.
+1. Crie o arquivo `.wslconfig` na pasta do usuário no Windows.
 
     ```cmd
     notepad %USERPROFILE%\.wslconfig
     ```
 
-2. Copie e cole as linhas abaixo no arquivo. Você pode ver exemplos [aqui](/my-config-files/.wslconfig.exemple) ou em [minha configuração atual](/my-config-files/.wslconfig).
+2. Copie e cole as linhas abaixo no arquivo. Você pode ver mais no [site oficial](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config) ou [minha configuração atual](/my-config-files/.wslconfig).
 
     ````conf
     [wsl2]
-    memory=4GB # Limita quantidade de memória RAM
-    processors=1 # Limita quantidade de processadores virtuais
+    memory=8GB
+    processors=1
     ````
 
-3. Reinicie sua distro wsl.
+3. Reinicie a distro após editar o arquivo:
 
     ```powershell
     wsl --shutdown
@@ -99,23 +105,23 @@ Defina configuração que englobará todas as suas distribuições Linux (Soment
 
 ### Local
 
-Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na distro instalada.
+Definição de configuração local para distro. Aplicado em ambos, WSL e WSL2.
 
-1. Abra ou crie o arquivo `wsl.conf` em `/etc` dentro da sua distro em execução.
+1. Crie o arquivo `wsl.conf` em `/etc` na distro desejada.
 
     ```sh
     sudo nano /etc/wsl.conf
     ```
 
-2. Você pode definir algumas dessas configurações ou ver mais exemplos [aqui](/my-config-files/wsl.conf.exemple). Essa é [minha configuração atual](/my-config-files/wsl.conf).
+2. Copie e cole as linhas abaixo no arquivo. Você pode ver mais no [site oficial](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config) ou [minha configuração atual](/my-config-files/wsl.conf).
 
     ```conf
     [boot]
-    systemd=true # Habilita o systemd
+    systemd=true
 
     [automount]
-    enabled = true # Monta automanticamente os discos de sua máquina na distro
-    root = /mnt # Ponto de montagem
+    enabled = true
+    root = /mnt
     ```
 
 3. Reinicie sua distro.
@@ -128,7 +134,7 @@ Pode ser usada no WSL1 e WS2. Essa configuração é aplicada localmente, na dis
 
 ### Optimize-VHD (Não funciona no Windows Home)**
 
-Antes, ative o Hyper-V.
+Antes, verifique se o Hyper-V está habilitado.
 
 ```shell
 Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx -Mode Full
@@ -193,7 +199,7 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mo
 6. Após a desinstalação, pode ser que permaneça resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretensão de anexar esse disco em uma futura instalação.
 
     ```powershell
-    C:\Users\<Usuário>\AppData\Local\Packages\<Distro>\LocalState
+    %UserProfile%\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState
     ```
 
 ## Referências
