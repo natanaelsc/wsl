@@ -1,0 +1,9 @@
+https://learn.microsoft.com/en-us/windows/wsl/networking
+
+netsh interface portproxy show v4tov4
+
+netsh interface portproxy add v4tov4 listenport=9443 listenaddress=0.0.0.0 connectport=9443 connectaddress=172.26.144.1
+
+netsh interface portproxy delete v4tov4 listenport=9443 listenaddress=0.0.0.0
+
+netsh interface portproxy delete v4tov4 listenport=9443 listenaddress=*

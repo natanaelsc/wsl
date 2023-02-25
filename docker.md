@@ -18,7 +18,7 @@
     **Ubuntu**
 
     ```sh
-    sudo mkdir -p /etc/apt/keyrings
+    sudo mkdir -m 0755 -p /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
     ```
 
@@ -51,7 +51,7 @@
 
     ```sh
     sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
+    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
     ```
 
 5. Verifique se a instala√ß√£o foi bem-sucedida:
@@ -94,8 +94,18 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala√
 
     ```sh
     dpkg -l | grep -i docker
-    sudo apt purge -y docker-ce docker-ce-cli docker-ce-rootless-extras docker-compose-plugin docker-scan-plugin
-    sudo apt autoremove -y docker-ce docker-ce-cli docker-ce-rootless-extras docker-compose-plugin docker-scan-plugin
+    ```
+
+    ```sh
+    sudo apt-get remove docker docker-engine docker.io containerd runc
+    ```
+
+    ```sh
+    sudo apt purge docker-ce docker-ce-cli docker-ce-rootless-extras docker-compose-plugin docker-scan-plugin -y
+    ```
+
+    ```sh
+    sudo apt autoremove docker-ce docker-ce-cli docker-ce-rootless-extras docker-compose-plugin docker-scan-plugin -y
     ```
 
 2. Exclua todos os res√≠duos deixados, imagens, containers, volumes e remova o grupo docker:
@@ -163,4 +173,4 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala√
 
 <https://docs.docker.com/get-docker>
 
-<https://docs.microsoft.com/pt-br/windows/wsl/install-win10>
+<https://docs.microsoft.com/pt-br/windows
