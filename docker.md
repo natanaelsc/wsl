@@ -173,4 +173,4 @@ Baixe o arquivo de pacote mais recente repetindo somente o processo de [instala√
 
 <https://docs.docker.com/get-docker>
 
-<https://docs.microsoft.com/pt-br/windows
+<<https://docs.microsoft.com/pt-br/windows>
