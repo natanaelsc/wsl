@@ -1,10 +1,10 @@
 # Este é meu arquivo de configuração do Git
 [user]
-        name = natanaelsc
+	name = natanaelsc
 	email = natanael96@live.com
-	signingkey = A803B77754459099
+	signingkey = F46454E9BE15B95D
 [credential]
-        helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [core]
 	editor = code
 [alias]

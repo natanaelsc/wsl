@@ -23,7 +23,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 CASE_SENSITIVE="true"
 
 # Plugins
-plugins=(git git-flow-completion zsh-autosuggestions asdf gpg-agent)
+plugins=(git zsh-autosuggestions asdf gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 
