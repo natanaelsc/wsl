@@ -18,7 +18,7 @@ O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Li
 
   - [Docker](/docker.md)
 
-  - [zsh](/zhs.md)
+  - [zsh](/zsh.md)
 
   - [asdf](/asdf.md)
 
@@ -52,7 +52,13 @@ O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Li
 3. Execute o comando de instalação:
 
     ```powershell
-    wsl --install
+    wsl --install -d Ubuntu
+    ```
+
+    Outras distribuições Linux disponíveis podem ser visualizadas com:
+
+    ```powershell
+    wsl --list --online
     ```
 
 4. Reinicie o computador.
@@ -63,18 +69,6 @@ O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Li
 
 ```sh
 sudo apt update && sudo apt upgrade -y
-```
-
-- A distro instalada por padrão é Ubuntu. Para instalar qualquer outra, execute o comando seguido do nome da distribuição:
-
-```powershell
-wsl --install Debian
-```
-
-- Para visualizar a lista de distribuições disponíveis execute:
-
-```powershell
-wsl --list --online
 ```
 
 ## Configuração

@@ -55,19 +55,19 @@ O arquivo de configuração pode ser encontrados em `\\wsl$\distro\home\$USER\.g
 
 ### Chave SSH
 
-1. Na sua distro execute o comando abaixo para gerar uma nova chave:
-
-    ```sh
-    ssh-keygen -t id_ed25519 -C "seu_email_github@example.com"
-    ```
-
-2. Observer que será exibido onde será guardada a chave, normalmente em `~/.ssh`. Mas se preferir você pode definir outro caminho. Caso contrário [Pressione Enter] pra prosseguir e salvar na pasta padrão.
-
-3. Na próxima etapa será pedido que você defina uma *passphrase* e a confirmação, pode ser deixado em branco, mas recomendo que defina uma forte e salve em um gerenciador de senhas. Use o comando abaixo caso necessário para gerar uma senha forte aleatória com até 48 caracteres:
+1. Use o comando abaixo para gerar uma *passphrase* forte aleatória com até 48 caracteres:
 
     ```sh
     openssl rand -base64 48
     ```
+
+2. Na sua distro execute o comando abaixo para gerar uma nova chave:
+
+    ```sh
+    ssh-keygen -t ed25519 -C "seu_email_github@example.com"
+    ```
+
+3. Observer que será exibido onde será guardada a chave, normalmente em `~/.ssh`. Mas se preferir você pode definir outro caminho. Caso contrário [Pressione Enter] pra prosseguir e salvar por padrão.
 
 4. Serão criados dois arquivos na pasta `.ssh`, o arquivo `id_ed25519` com a chave privada e o arquivo `id_ed25519.pub` com a chave pública. Você pode visualiza-los com o comando abaixo, apenas trocando pelo nome do arquivo desejado.
 
@@ -116,49 +116,51 @@ O arquivo de configuração pode ser encontrados em `\\wsl$\distro\home\$USER\.g
 
     3. **1y** ano para período de expiração e OK.
 
-3. Adicione seu nome e email do github. Sua chave será armazenada em `~/.gnupg`.
+3. Adicione seu nome real e email do github. Sua chave será armazenada em `~/.gnupg`.
 
-4. Liste suas chaves GPG:
+4. Liste suas chaves GPG e copie o ID da chave que você deseja adicionar ao GitHub. Está localizado entre `sec   rsa4096/` e a data de criação. Exemplo: `sec   rsa4096/<chave_id> 2023-01-23 [SC] [expires: 2024-01-23]`.
 
     ```sh
     gpg --list-secret-key --keyid-form LONG
     ```
 
-5. Copie o ID da chave que você deseja adicionar ao GitHub. Está localizado entre `sec   rsa4096/` e a data de criaçã da chave. Exemplo:
-
-    ```txt
-    sec   rsa4096/95693A1975F2F1F0 2023-01-23 [SC] [expires: 2024-01-23]
-    ```
-
-6. Exporte a chave publica:
+5. Exporte a chave publica:
 
     ```sh
-    gpg --armor --export 95693A1975F2F1F0
+    gpg --armor --export <chave_id> # ID de sua chave
     ```
 
-7. Na sua conta do GitHub siga para **Settings → SSH and GPG keys → GPG keys → New GPG key**. Cole a chave pública exportada e **add GPG key**.
+6. Na sua conta do GitHub siga para **Settings → SSH and GPG keys → GPG keys → New GPG key**. Cole a chave pública exportada e **add GPG key**.
 
-8. Defina sua chave padrão de assinatura:
+7. Defina sua chave padrão de assinatura:
 
     ```sh
-    git config --global user.signingkey 95693A1975F2F1F0 # ID de sua chave
+    git config --global user.signingkey <chave_id> # ID de sua chave
     ```
 
-9. Adicione a variável `export GPG_TTY=$(tty)` ao arquivo `~/.bash_profile` ou `~/.zshrc`.
+8. Adicione a variável `export GPG_TTY=$(tty)` ao arquivo `~/.bash_profile` ou `~/.zshrc`.
 
-10. Defina assinatura com chave GPG como padrão para **commits** de todos os repositórios:
+    ```sh
+    echo "export GPG_TTY=$(tty)" >> ~/.bash_profile
+    ```
+
+    ```sh
+    echo "export GPG_TTY=$(tty)" >> ~/.zshrc
+    ```
+
+9. Defina assinatura com chave GPG como padrão para **commits** de todos os repositórios:
 
     ```sh
     git config --global commit.gpgsign true
     ```
 
-11. Defina assinatura com chave GPG como padrão para **tags** de todos os repositórios:
+10. Defina assinatura com chave GPG como padrão para **tags** de todos os repositórios:
 
     ```sh
     git config --global tag.gpgsign true
     ```
 
-12. Adicione a linha `use-agent` no arquivo `~/.gnupg/gpp.conf` e execute o agent gpg.
+11. Adicione a linha `use-agent` no arquivo `~/.gnupg/gpp.conf` e execute o agent gpg.
 
     ```sh
     echo "use-agent" >> ~/.gnupg/gpp.conf
