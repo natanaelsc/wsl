@@ -11,7 +11,7 @@
 * [Plugins](#plugins)
 
   * [Zsh Autosuggestions](#zsh-autosuggestions)
-  
+
   * [Zsh NVM](#zsh-nvm)
 
 * [Definindo terminal padrão no VSCode](#definido-terminal-padrão-no-vscode)
@@ -25,15 +25,13 @@ sudo apt-get install zsh -y
 ### [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 ```sh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 ### [Powerlevel10K](https://github.com/romkatv/powerlevel10k)
 
-Tema customizado para Oh My Zsh.
-
 ```sh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
 Para uma melhor experiência, instale as fontes [MesloLGS NF](/fonts/MesloLGS%20NF.zip).
@@ -56,7 +54,7 @@ Para uma melhor experiência, instale as fontes [MesloLGS NF](/fonts/MesloLGS%20
     source .zshrc
     ```
 
-    Caso deseje reconfigurar, sempre pode chamar pelo comando `p10k configure`.
+  Caso deseje reconfigurar, sempre pode chamar pelo comando `p10k configure`.
 
 ## Plugins
 

@@ -1,14 +1,7 @@
-# My zsh config
+# ZSH Configuration
 
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# Inicia daemon do Docker na inicialização, se não iniciar sozinho.
-RUNNING=`ps aux | grep dockerd | grep -v grep`
-if [ -z "$RUNNING" ]; then
-    sudo dockerd > /dev/null 2>&1 &
-    disown
 fi
 
 # Define variavéis importantes
@@ -37,3 +30,13 @@ alias dev="cd ~/development"
 alias dockerstop="docker stop $(docker ps -aq)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# pnpm
+export PNPM_HOME="/home/natanael/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+GITSTATUS_LOG_LEVEL=DEBUG

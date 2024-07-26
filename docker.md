@@ -1,176 +1,26 @@
-# Docker WSL
+# [Docker](https://www.docker.com)
 
-## Instalação
+[Docker](https://www.docker.com) é uma plataforma de software que permite a criação, teste e implantação de aplicativos em contêineres. Os contêineres são uma forma de empacotar um aplicativo com todas as partes necessárias, como bibliotecas e outras dependências, e enviá-lo como um único pacote. Ao fazer isso, o aplicativo será executado em qualquer ambiente: de um laptop a um servidor, na nuvem ou em um data center.
 
-1. Atualize e configure o repositório:
+* [Instalação](#instalação)
 
-    ```sh
-    sudo apt-get update
-    sudo apt-get install \
-      ca-certificates \
-      curl \
-      gnupg \
-      lsb-release -y
-    ```
+* [Problemas](#problemas)
 
-2. Adicione a chave GPG oficial:
-
-    **Ubuntu**
-
-    ```sh
-    sudo mkdir -m 0755 -p /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    ```
-
-    **Debian**
-
-    ```sh
-    sudo mkdir -p /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-    ```
-
-3. Adicione as configurações ao repositório:
-
-    **Ubuntu**
-
-    ```sh
-    echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    ```
-
-    **Debian**
-
-    ```sh
-    echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    ```
-
-4. Instale os pacotes do docker:
-
-    ```sh
-    sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-    ```
-
-5. Verifique se a instalação foi bem-sucedida:
-
-    ```sh
-    sudo docker run hello-world
-    ```
-
-6. **(Opcional)** Adicione seu usuário ao grupo docker para executar comandos sem sudo:
-
-    ```sh
-    sudo usermod -aG docker $USER
-    newgrp docker
-    ```
-
-7. **(Opcional)** Instale o Portainer, interface web para gerenciamento Docker.
-
-    ```sh
-    sudo docker run -d \
-      -p 8000:8000 \
-      -p 9443:9443 \
-      --name portainer \
-      --restart=always \
-      --pull=always \
-      -v /var/run/docker.sock:/var/run/docker.sock \
-      -v ~/.docker/portainer/data:/data \
-      portainer/portainer-ce:latest \
-      -H unix:///var/run/docker.sock
-    ```
-
-    Acesse <https://localhost:9443>
-
-## Atualização
-
-Baixe o arquivo de pacote mais recente repetindo somente o processo de [instalação](#instalação) no passo 4.
-
-## Desinstalação
-
-1. Procure e desinstale todos os pacotes **docker**:
-
-    ```sh
-    dpkg -l | grep -i docker
-    ```
-
-    ```sh
-    sudo apt-get remove docker docker-engine docker.io containerd runc
-    ```
-
-    ```sh
-    sudo apt purge docker-ce docker-ce-cli docker-ce-rootless-extras docker-compose-plugin docker-scan-plugin -y
-    ```
-
-    ```sh
-    sudo apt autoremove docker-ce docker-ce-cli docker-ce-rootless-extras docker-compose-plugin docker-scan-plugin -y
-    ```
-
-2. Exclua todos os resíduos deixados, imagens, containers, volumes e remova o grupo docker:
-
-    ```sh
-    sudo rm -rfv /var/lib/docker /etc/docker /var/lib/containerd /var/run/docker.sock /etc/apt/keyrings/docker.gpg
-    sudo groupdel docker
-    ```
-
-3. Remova a interface de rede Docker com os pacote `net-tools` e `bridge-utils`:
-
-    ```sh
-    sudo apt install net-tools bridge-utils
-    sudo ifconfig docker0 down
-    sudo ifconfig docker_gwbridge down
-    sudo brctl delbr docker0
-    sudo brctl delbr docker_gwbridge
-    ```
-
-## Veja mais
-
-- Para permitir que seu usuário execute o `sudo` sem digitar senha a todo momento que chamar o comando `docker`. Use a opção abaixo ou a adicione seu usuário ao grupo docker (veja no passo 6 da [instalação](#instalação)).
-
-    ```sh
-    sudo visudo
-    ```
-
-    Adicione na ultima linha do arquivo:
-
-    ```conf
-    <nome_de_usuário> ALL=(ALL) NOPASSWD: /usr/bin/dockerd
-    ```
-
-- Iniciando Docker na inicialização do WSL1 no Windows 10. Você precisa ter o [zsh](/zsh.md) instalado para funcionar.
-
-    ```sh
-    echo '# Start Docker daemon automatically when logging in if not running.' >> ~/.zshrc
-    echo 'RUNNING=`ps aux | grep dockerd | grep -v grep`' >> ~/.zshrc
-    echo 'if [ -z "$RUNNING" ]; then' >> ~/.zshrc
-    echo '    sudo dockerd > /dev/null 2>&1 &' >> ~/.zshrc
-    echo '    disown' >> ~/.zshrc
-    echo 'fi' >> ~/.zshrc
-    source .zshrc
-    ```
-
-- Iniciando Docker na inicialização do WSL2 no Windows 11. Adicione a linha abaixo ou configure o arquivo [wsl.conf](/README.md/#local), se já houver esse campo. Caso a opção `systemd` esteja como `true`, não será necessário adicionar a linha abaixo.
-
-    ```sh
-    [boot]
-    command="service docker start"
-    ```
+## [Instalação](https://docs.docker.com/desktop/wsl)
 
 ## Problemas
 
-- *Got permission denied while trying to connect to the Docker daemon socket at unix*
+* *Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?*
 
-    Caso se depare com um erro do tipo utilizando comandos do Docker CLI sem `sudo`, você poderá resolve-lo adicionando seu usuário ao grupo `docker` ou seguindo o passo do primeiro item em [veja mais](#veja-mais).
+    ```sh
+    sudo service docker start
+    ```
+
+* *Got permission denied while trying to connect to the Docker daemon socket at unix*
+
+    Caso se depare com um erro desse tipo utilizando comandos do Docker CLI sem `sudo`, você poderá resolve-lo adicionando seu usuário ao grupo `docker`.
 
     ```sh
     sudo usermod -aG docker $USER
     newgrp docker
     ```
-
-## Referências
-
-<https://docs.docker.com/get-docker>
-
-<<https://docs.microsoft.com/pt-br/windows>

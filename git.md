@@ -4,8 +4,6 @@
 
 * [Instalação](#instalação)
 
-* [Configuração](#configuração)
-
   * [Integração Windows/WSL](#integração-windowswsl-recomendada)
 
   * [Chave SSH](#chave-ssh)
@@ -26,29 +24,23 @@ Por padrão, o git vem instalado nas distribuições WSL, no entanto, você pode
 sudo apt-get install git -y
 ```
 
-## Configuração
-
-Escolha uma das opções abaixo para configurar.
-
 ### Integração Windows/WSL **(Recomendada)**
 
-Você precisa ter o Git Bash instalado no Windows e com uma conta previamente configurada.
-
-Baixe o pacote de instalação mais recente no [site oficial do Git](https://git-scm.com/download/win).
+Necessário ter o [Git Bash](https://git-scm.com/download/win) instalado no Windows e com uma conta previamente configurada.
 
 1. Com as instalações concluídas no Windows e no [WSL](#instalação), configure o arquivo `.gitconfig`. No terminal, entre com os comandos abaixo substituindo as informações dos atributos para os campos de `user.name` e `user.email` pelas suas.
 
     No meu caso:
 
     ```sh
-    git config --global user.name "natanaelsc"
-    git config --global user.email "natanael96@live.com"
+    git config --global user.name "<USER_NAME>"
+    git config --global user.email "<EMAIL>"
     ```
 
 2. Configure o *Git Credential Manager*:
 
     ```sh
-    git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager-core.exe"
+    git config --global credential.helper "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe"
     ```
 
 O arquivo de configuração pode ser encontrados em `\\wsl$\distro\home\$USER\.gitconfig`.
@@ -64,7 +56,7 @@ O arquivo de configuração pode ser encontrados em `\\wsl$\distro\home\$USER\.g
 2. Na sua distro execute o comando abaixo para gerar uma nova chave:
 
     ```sh
-    ssh-keygen -t ed25519 -C "seu_email_github@example.com"
+    ssh-keygen -t ed25519 -C "<EMAIL>"
     ```
 
 3. Observer que será exibido onde será guardada a chave, normalmente em `~/.ssh`. Mas se preferir você pode definir outro caminho. Caso contrário [Pressione Enter] pra prosseguir e salvar por padrão.
@@ -99,6 +91,8 @@ O arquivo de configuração pode ser encontrados em `\\wsl$\distro\home\$USER\.g
     ***Hi seuusuário! You've successfully authenticated, but GitHub does not provide shell access.***
 
     Para clonar um repositório privado, use a conexão SSH ao invés do endereço do mesmo.
+
+## Dicas e Truques
 
 ### Assinatura de Commits com Chave GPG
 
@@ -183,9 +177,7 @@ O arquivo de configuração pode ser encontrados em `\\wsl$\distro\home\$USER\.g
 
 2. Selecione o email adicionado digitando `uid 2`, sendo 2 o valor do ID no meu caso. Digite `trust`, defina como `5` *5 = I trust ultimately* e confirme com `y`. Digite `save`
 
-## Mais
-
-### Inicializando Agent SSH
+#### Inicializando Agent SSH
 
 Adicione o plugin do `ssh-agent` no [zsh](/zsh.md/#plugins). É necessário já o ter instalado, siga o [guia de instalação](/zsh.md/#instalação).
 
@@ -195,7 +187,7 @@ Com o zsh instalado, abra o arquivo de configuração e adicione o plugin `ssh-a
 nano .zshrc
 ```
 
-### O arquivo .gitconfig
+### Arquivo de Configuração
 
 * Defina o VSCode para abrir o arquivo de configuração:
 

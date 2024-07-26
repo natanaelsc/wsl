@@ -1,89 +1,86 @@
 # Subsistema do Windows para Linux (WSL)
 
-O WSL te permite instalar distros Linux no Windows (como Ubuntu, Debian, Arch Linux, etc) sem modificação, sem a sobrecarga de uma máquina virtual ou configuração dual boot.
+O WSL permite executar distribuições Linux no Windows (como Ubuntu, Debian, Arch Linux, etc) sem modificação, sem a sobrecarga de uma máquina virtual ou configuração em dual boot.
 
 ## Visão Geral
 
-- [Requisitos](#requisitos)
+* [Requisitos](#requisitos)
 
-- [Instalação](#instalação)
+* [Instalação](#instalação)
 
-- [Configuração](#configuração)
+* [Configuração](#configuração)
 
-  - [Global](#global)
+  * [Global](#global)
 
-  - [Local](#local)
+  * [Distro](#distro)
 
-  - [Git](/git.md)
+  * [Git](/git.md)
 
-  - [Docker](/docker.md)
+  * [Docker](/docker.md)
 
-  - [zsh](/zsh.md)
+  * [zsh](/zsh.md)
 
-  - [asdf](/asdf.md)
+  * [asdf](/asdf.md)
 
-- [Otimizando Disco Virtual (.vhdx)](#otimizando-disco-virtual-vhdx)
+* [Dicas e Truques](#dicas-e-truques)
 
-- [Desinstalação](#desinstalação)
+* [Desinstalação](#desinstalação)
 
-- [Referências](#referências)
+* [Referências](#referências)
 
 ## Requisitos
 
-- Windows 10 versão 2004 ou superior (Build 19041 ou superior) ou o Windows 11.
+* Windows 10 versão 2004 ou superior (Build 19041 ou superior) ou o Windows 11.
 
-- No mínimo 8GB de RAM.
+* Mínimo 8GB de RAM.
 
-## Instalação
+* Virtualização habilitada na BIOS.
 
-1. Habilite o recurso do **Subsistema do Windows para Linux** e a **Plataforma de Máquina Virtual**:
+## [Instalação](https://learn.microsoft.com/pt-br/windows/wsl/install)
+
+1. Habilite o recurso **Subsistema do Windows para Linux** e **Plataforma de Máquina Virtual** em **Recursos do Windows** ou execute os comandos abaixo como administrador no PowerShell:
 
     ```powershell
     dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
     dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
     ```
 
-2. Atribua a versão padrão do WSL para a versão 2:
+2. Ainda como administrador, execute o comando de instalação:
 
     ```powershell
-    wsl --set-default-version 2
+    wsl --install -d <Distribution Name>
     ```
 
-3. Execute o comando de instalação:
-
-    ```powershell
-    wsl --install -d Ubuntu
-    ```
-
-    Outras distribuições Linux disponíveis podem ser visualizadas com:
+    Distribuições Linux disponíveis:
 
     ```powershell
     wsl --list --online
     ```
 
-4. Reinicie o computador.
+3. Reinicie o computador.
 
-5. Na inicialização, será apresentada a janela de sua distro para definição do usuário.
+4. Na inicialização, será apresentada a janela de sua distro para definição do usuário.
 
-6. Atualize os pacotes:
+5. Atualize os pacotes:
 
-```sh
-sudo apt update && sudo apt upgrade -y
-```
+    ```sh
+    sudo apt update && sudo apt upgrade -y
+    sudo apt install git curl htop -y
+    ```
 
-## Configuração
+## [Configuração](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config)
 
-### Global
+### [Global](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#wslconfig)
 
 Definição de configuração global para todas as distribuições Linux **WSL2**.
 
-1. Crie o arquivo `.wslconfig` na pasta do usuário no Windows.
+1. Crie o arquivo `.wslconfig` na pasta do usuário no Windows:
 
     ```cmd
     notepad %USERPROFILE%\.wslconfig
     ```
 
-2. Copie e cole as linhas abaixo no arquivo. Você pode ver mais no [site oficial](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config) ou [minha configuração atual](/my-config-files/.wslconfig).
+2. Copie e cole as linhas abaixo no arquivo. [Exemplo](./config/.wslconfig):
 
     ````conf
     [wsl2]
@@ -94,20 +91,20 @@ Definição de configuração global para todas as distribuições Linux **WSL2*
 3. Reinicie a distro após editar o arquivo:
 
     ```powershell
-    wsl --shutdown
+    wsl --shutdown <Distribution Name>
     ```
 
-### Local
+### [Distro](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#wslconf)
 
-Definição de configuração local para distro. Aplicado em ambos, WSL e WSL2.
+Definição de configuração local para distro. Aplicado em ambos, **WSL** e **WSL2**.
 
-1. Crie o arquivo `wsl.conf` em `/etc` na distro desejada.
+1. No terminal da distro, crie o arquivo `wsl.conf` em `/etc`:
 
     ```sh
     sudo nano /etc/wsl.conf
     ```
 
-2. Copie e cole as linhas abaixo no arquivo. Você pode ver mais no [site oficial](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config) ou [minha configuração atual](/my-config-files/wsl.conf).
+2. Copie e cole as linhas abaixo no arquivo. [Exemplo](./config/wsl.conf):
 
     ```conf
     [boot]
@@ -118,29 +115,31 @@ Definição de configuração local para distro. Aplicado em ambos, WSL e WSL2.
     root = /mnt
     ```
 
-3. Reinicie sua distro.
+3. No terminal do Windows, reinicie a distribuição:
 
     ```powershell
-    wsl --shutdown
+    wsl --shutdown <Distribution Name>
     ```
 
-## Otimizando Disco Virtual (.vhdx)
+## Dicas e Truques
 
-### Optimize-VHD (Não funciona no Windows Home)**
+### Otimizando Disco Virtual (.vhdx) da Distribuição
 
-Antes, verifique se o Hyper-V está habilitado.
+* Optimize-VHD (Não funciona no Windows Home)**
+
+Hyper-V deve estar habilitado para usar o comando `Optimize-VHD`.
 
 ```shell
 Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState\ext4.vhdx -Mode Full
 Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mode Full
 ```
 
-### DiskPart (Qualquer versão do Windows)
+* DiskPart
 
-1. Desligue sua distro:
+1. Desligue a distribuição:
 
     ```shell
-    wsl --shutdown
+    wsl --shutdown <Distribution Name>
     ```
 
 2. Abra o DiskPart:
@@ -161,13 +160,13 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mo
     attach vdisk readonly
     ```
 
-5. Compacte.
+5. Compacte:
 
     ```shell
     compact vdisk
     ```
 
-6. Desanexe o disco e saia.
+6. Desanexe o disco e saia:
 
     ```shell
     detach vdisk
@@ -185,7 +184,7 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mo
 4. Como administrador, abra o PowerSheel ou CMD e execute o comando:
 
     ```sh
-    wsl --unregister <Distro>
+    wsl --unregister <Distribution Name>
     ```
 
 5. Reinicie seu PC.
@@ -193,8 +192,10 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mo
 6. Após a desinstalação, pode ser que permaneça resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretensão de anexar esse disco em uma futura instalação.
 
     ```powershell
-    %UserProfile%\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc\LocalState
+    %UserProfile%\AppData\Local\Packages
     ```
+
+    Procure por pastas com o nome da sua distribuição Linux, como `CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc` e exclua.
 
 ## Referências
 

@@ -12,7 +12,7 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 
 ### ZSH
 
-* [Adicione](/zsh.md/#Plugins) `asdf` aos plugins no arquivo `.zshrc` para ser executado na inicialização.
+* [Adicione](./zsh.md#plugins) `asdf` aos plugins no arquivo `.zshrc` para ser executado na inicialização.
 
 ### Plugins
 
