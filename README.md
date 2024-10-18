@@ -173,21 +173,32 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mo
     exit
     ```
 
-## Desinstalação
+## Desinstalar Distribuição
 
-1. Siga: ***Configurações → Aplicativos → Aplicativos instalados ou algo parecido → Pesquise sua distro → Selecione desinstalar → Desinstalar de novo***. Esses passos devem está corretos ou fazerem algum sentido, eu realmente não me recordo.
+1. Siga para ***Configurações → Aplicativos → Aplicativos instalados → Selecione sua distro → Desinstalar***.
+2. Como administrador, abra o terminal e execute o comando:
+
+    ```sh
+    wsl --unregister <Distribution Name>
+    ```
+    
+3. Reinicie o PC.
+
+## Desinstalar WSL
+
+1. Siga para ***Configurações → Aplicativos → Aplicativos instalados → Selecione sua distro → Desinstalar***.
 
 2. Na mesma aba de aplicativos, procure por ***Windows Subsystem for Linux update*** e coisas parecidas com ***subs*** e ***linux***, desinstale todas, cuidado pra não desinstalar seu sistema.
 
 3. Desinstale os componentes do WSL2. Pesquise por ***Recursos do Windows***, você deverá ver algo como ***Ativar ou desativar recursos do Windows***, selecione e siga em frente. Desative ***Subsistema do Windows para Linux*** e ***Plataforma de Máquina Virtual***.
 
-4. Como administrador, abra o PowerSheel ou CMD e execute o comando:
+4. Como administrador, abra o terminal e execute o comando:
 
     ```sh
     wsl --unregister <Distribution Name>
     ```
 
-5. Reinicie seu PC.
+5. Reinicie o PC.
 
 6. Após a desinstalação, pode ser que permaneça resíduos em sua máquina como o disco virtual (.vhdx) do seu WSL. Exclua, caso não tenha a pretensão de anexar esse disco em uma futura instalação.
 
