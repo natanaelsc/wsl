@@ -6,15 +6,7 @@
 
   * [Integração Windows/WSL](#integração-windowswsl-recomendada)
 
-  * [Chave SSH](#chave-ssh)
-
   * [Assinatura de Commits com Chave GPG](#assinatura-de-commits-com-chave-gpg)
-
-* [Mais](#mais)
-
-  * [Inicializando Agent SSH com chave de segurança](#inicializando-agent-ssh)
-
-  * [O arquivo .gitconfig](#o-arquivo-gitconfig)
 
 ## Instalação
 
@@ -45,56 +37,13 @@ Necessário ter o [Git Bash](https://git-scm.com/download/win) instalado no Wind
 
 O arquivo de configuração pode ser encontrados em `\\wsl$\distro\home\$USER\.gitconfig`.
 
-### Chave SSH
-
-1. Use o comando abaixo para gerar uma *passphrase* forte aleatória com até 48 caracteres:
-
-    ```sh
-    openssl rand -base64 48
-    ```
-
-2. Na sua distro execute o comando abaixo para gerar uma nova chave:
-
-    ```sh
-    ssh-keygen -t ed25519 -C "<EMAIL>"
-    ```
-
-3. Observer que será exibido onde será guardada a chave, normalmente em `~/.ssh`. Mas se preferir você pode definir outro caminho. Caso contrário [Pressione Enter] pra prosseguir e salvar por padrão.
-
-4. Serão criados dois arquivos na pasta `.ssh`, o arquivo `id_ed25519` com a chave privada e o arquivo `id_ed25519.pub` com a chave pública. Você pode visualiza-los com o comando abaixo, apenas trocando pelo nome do arquivo desejado.
-
-    ```sh
-    cat ~/.ssh/id_ed25519
-    ```
-
-5. Inicie o `ssh-agent` e adicione sua chave privada:
-
-    ```sh
-    eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/id_ed25519
-    ```
-
-6. Copie sua chave publica.
-
-    ```sh
-    cat ~/.ssh/id_ed25519.pub
-    ```
-
-7. Acesse sua conta do GitHub e siga para ***Perfil → Settings → SSH and GPG keys → SSH keys → New SSH key***. No campo ***Title*** atribua um nome, em ***Key type*** defina como `Authentication key` e em ***Key*** cole sua chave pública copiada do seu host. Depois disso selecione ***Add SSH key***. Você verá que sua chave foi adicionada e está listada. Para testar a conexão, use o comando abaixo:
-
-    ```sh
-    ssh -T git@github.com
-    ```
-
-    Se tudo estiver funcionando corretamente você verá:
-
-    ***Hi seuusuário! You've successfully authenticated, but GitHub does not provide shell access.***
-
-    Para clonar um repositório privado, use a conexão SSH ao invés do endereço do mesmo.
-
 ## Dicas e Truques
 
 ### Assinatura de Commits com Chave GPG
+
+```sh
+sudo apt-get install gnupg -y
+```
 
 1. Execute o comando para gerar chave GPG:
 
@@ -176,16 +125,6 @@ O arquivo de configuração pode ser encontrados em `\\wsl$\distro\home\$USER\.g
     Repeti o procedimento de adição seguido no [item 3](#assinatura-de-commits-com-chave-gpg).
 
 2. Selecione o email adicionado digitando `uid 2`, sendo 2 o valor do ID no meu caso. Digite `trust`, defina como `5` *5 = I trust ultimately* e confirme com `y`. Digite `save`
-
-#### Inicializando Agent SSH
-
-Adicione o plugin do `ssh-agent` no [zsh](/zsh.md/#plugins). É necessário já o ter instalado, siga o [guia de instalação](/zsh.md/#instalação).
-
-Com o zsh instalado, abra o arquivo de configuração e adicione o plugin `ssh-agent` aos demais, caso já possua algum, separe com espaço. Exemplo: `plugins=(git ssh-agent)`.
-
-```sh
-nano .zshrc
-```
 
 ### Arquivo de Configuração
 

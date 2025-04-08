@@ -1,20 +1,16 @@
-# asdf
+# ASDF
 
 Gerenciador de versões para ferramentas e linguagens.
 
 ## Instalação
 
 ```sh
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.15.0
+echo ". $HOME/.asdf/asdf.sh" >> ~/.zshrc
+source ~/.zshrc
 ```
 
-## Configuração
-
-### ZSH
-
-* [Adicione](./zsh.md#plugins) `asdf` aos plugins no arquivo `.zshrc` para ser executado na inicialização.
-
-### Plugins
+## Plugins
 
 Veja mais na sobre plugins na [documentação](https://asdf-vm.com/guide/getting-started.html#_4-install-a-plugin).
 

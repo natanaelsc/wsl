@@ -2,37 +2,11 @@
 
 O WSL permite executar distribuições Linux no Windows (como Ubuntu, Debian, Arch Linux, etc) sem modificação, sem a sobrecarga de uma máquina virtual ou configuração em dual boot.
 
-## Visão Geral
-
-* [Requisitos](#requisitos)
-
-* [Instalação](#instalação)
-
-* [Configuração](#configuração)
-
-  * [Global](#global)
-
-  * [Distro](#distro)
-
-  * [Git](/git.md)
-
-  * [Docker](/docker.md)
-
-  * [zsh](/zsh.md)
-
-  * [asdf](/asdf.md)
-
-* [Dicas e Truques](#dicas-e-truques)
-
-* [Desinstalação](#desinstalação)
-
-* [Referências](#referências)
-
 ## Requisitos
 
 * Windows 10 versão 2004 ou superior (Build 19041 ou superior) ou o Windows 11.
 
-* Mínimo 8GB de RAM.
+* Mínimo 8GB de RAM disponível.
 
 * Virtualização habilitada na BIOS.
 
@@ -65,20 +39,28 @@ O WSL permite executar distribuições Linux no Windows (como Ubuntu, Debian, Ar
 
     ```sh
     sudo apt update && sudo apt upgrade -y
-    sudo apt install git curl htop -y
+    sudo apt install curl -y
     ```
 
 ## [Configuração](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config)
 
-### [Global](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#wslconfig)
+### [Windows](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#wslconfig)
 
-Definição de configuração global para todas as distribuições Linux **WSL2**.
+1. Defina as configurações no Windows para todas as distribuições Linux **WSL2**.
 
-1. Crie o arquivo `.wslconfig` na pasta do usuário no Windows:
+    No PowerShell, execute o comando:
 
-    ```cmd
-    notepad %USERPROFILE%\.wslconfig
+    ```powershell
+    notepad $env:USERPROFILE\.wslconfig
     ```
+
+    Ou, no Windows Explorer, navegue até o caminho:
+
+    ```powershell
+    %USERPROFILE%
+    ```
+
+    E crie o arquivo `.wslconfig` na pasta do usuário.
 
 2. Copie e cole as linhas abaixo no arquivo. [Exemplo](./config/.wslconfig):
 
@@ -96,9 +78,9 @@ Definição de configuração global para todas as distribuições Linux **WSL2*
 
 ### [Distro](https://learn.microsoft.com/pt-br/windows/wsl/wsl-config#wslconf)
 
-Definição de configuração local para distro. Aplicado em ambos, **WSL** e **WSL2**.
+1. Defina a configuração local para a distro.
 
-1. No terminal da distro, crie o arquivo `wsl.conf` em `/etc`:
+    No terminal da distribuição, execute o comando:
 
     ```sh
     sudo nano /etc/wsl.conf
@@ -120,6 +102,16 @@ Definição de configuração local para distro. Aplicado em ambos, **WSL** e **
     ```powershell
     wsl --shutdown <Distribution Name>
     ```
+
+## Ferramentas
+
+### [Git](git.md)
+
+### [Asdf](asdf.md])
+
+### [Docker](docker.md)
+
+### [ZSH](zsh.md)
 
 ## Dicas e Truques
 
@@ -181,7 +173,7 @@ Optimize-VHD -Path C:\Users\Natanael\AppData\Local\Docker\wsl\data\ext4.vhdx -Mo
     ```sh
     wsl --unregister <Distribution Name>
     ```
-    
+
 3. Reinicie o PC.
 
 ## Desinstalar WSL

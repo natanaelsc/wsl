@@ -1,22 +1,13 @@
 [user]
-        name = natanaelsc
-        email = natanael96@live.com
-        signingkey = F46454E9BE15B95D
+	name = Natanael Silva
+	email = natanael96@live.com
+	signingkey = F46454E9BE15B95D
 [credential]
-        helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [core]
-        editor = code
-[alias]
-        s = !git status -s
-        ac = !git add . && git commit -m
-        c = !git checkout -b
-        l = !git log --pretty=format:'%C(yellow)%h%C(cyan)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
-        b = !git branch -a
-        i = !git init && touch .gitignore && touch README.md && git ac 'initial commit' && git branch -M main
-        p = !git push
-        rop = !git remote add origin git@github.com:natanaelsc/`basename $(pwd)`.git && git push -u origin main
+	editor = code
 [init]
-        defaultBranch = main
+	defaultBranch = main
 [commit]
         gpgsign = true
 [tag]
@@ -26,3 +17,12 @@
         process = git-lfs filter-process
         required = true
         clean = git-lfs clean -- %f
+[alias]
+        s = !git status -s
+        ac = !git add . && git commit -m
+        c = !git checkout -b
+        l = !git log --pretty=format:'%C(yellow)%h%C(cyan)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
+        b = !git branch -a
+        i = !git init && touch .gitignore && touch README.md && git ac 'initial commit' && git branch -M main
+        p = !git push
+        rop = !git remote add origin git@github.com:natanaelsc/`basename $(pwd)`.git && git push -u origin main

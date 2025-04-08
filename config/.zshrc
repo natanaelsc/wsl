@@ -4,10 +4,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Define variavéis importantes
+# Define variáveis importantes
 export ZSH="$HOME/.oh-my-zsh"
 export LANG="en_US.UTF-8"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+# export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export GPG_TTY=$(tty)
 
 # Tema padrão
@@ -16,7 +16,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 CASE_SENSITIVE="true"
 
 # Plugins
-plugins=(git zsh-autosuggestions asdf gpg-agent)
+plugins=(git zsh-autosuggestions gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -40,3 +40,5 @@ esac
 # pnpm end
 
 GITSTATUS_LOG_LEVEL=DEBUG
+
+. /home/natanael/.asdf/asdf.sh
